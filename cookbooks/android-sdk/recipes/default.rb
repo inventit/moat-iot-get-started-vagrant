@@ -59,4 +59,21 @@ execute "android update" do
   action :run
 end
 
+execute "wget platform" do
+  cwd "/tmp"
+  command "wget #{node[:android][:platform_url]}"
+  creates "/tmp/#{node[:android][:platform_tarball]}"
+  action :run
+end
 
+remote_file "/tmp/#{node[:android][:platform_tarball]}" do
+  source "#{node[:android][:platform_url]}"
+  mode "0644"
+  checksum "#{node[:android][:platform_tarball_checksum]}"
+end
+
+execute "unzip platform" do
+  cwd node[:android][:platform_dir]
+  command "jar xf /tmp/#{node[:android][:platform_tarball]}"
+  action :run
+end
