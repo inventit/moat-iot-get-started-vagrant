@@ -57,6 +57,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Change History
 
+1.0.2 : February 13, 2013
+
+* Adds environment variables used in the [instruction](http://dev.yourinventit.com/guides/get-started) to .bashrc
+
 1.0.1 : February 12, 2013
 
 * Fixes an issue where android API level 16 is not installed
