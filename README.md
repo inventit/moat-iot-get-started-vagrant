@@ -57,6 +57,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Change History
 
+1.0.1 : February 12, 2013
+
+* Fixes an issue where android API level 16 is not installed
+
 1.0.0 : February 12, 2013
 
 * Initial Release.
