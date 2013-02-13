@@ -9,6 +9,7 @@ execute "checkout iidn-cli" do
   user node[:current][:user]
   cwd project_home
   command "git clone git://github.com/inventit/iidn-cli.git ."
+  not_if {File.exists?("#{project_home}/iidn")}
 end
 
 execute "add-path-bashrc" do

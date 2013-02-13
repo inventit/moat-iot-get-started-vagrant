@@ -7,26 +7,26 @@ execute "wget" do
   command "wget #{node[:maven][:tarball_url]}"
   creates "/tmp/#{tarball}"
   action :run
-  not_if installation_dir_exists
+  not_if {installation_dir_exists}
 end
 
 execute "create installation_dir" do
   command "mkdir -p #{installation_dir}"
-  not_if installation_dir_exists
+  not_if {installation_dir_exists}
 end
 
 remote_file "/tmp/#{tarball}" do
   source "#{node[:maven][:tarball_url]}"
   mode "0644"
   checksum "#{node[:maven][:tarball_checksum]}"
-  not_if installation_dir_exists
+  not_if {installation_dir_exists}
 end
 
 execute "tar" do
   cwd installation_dir
   command "tar zxf /tmp/#{tarball}"
   action :run
-  not_if installation_dir_exists
+  not_if {installation_dir_exists}
 end
 
 execute "chmod" do
