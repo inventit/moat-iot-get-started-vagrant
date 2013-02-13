@@ -12,4 +12,6 @@ Vagrant::Config.run do |config|
     chef.add_recipe("iidn-cli")
     chef.add_recipe("simple-example")
   end
+  # Forward guest port 3000 to host port 3000
+  config.vm.forward_port 3000, 3000
 end
