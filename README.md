@@ -57,6 +57,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Change History
 
+1.0.4 : February 13, 2013
+
+* Fixes an issue where port forwarding settings is missing
+
 1.0.3 : February 13, 2013
 
 * Fixes issues where re-launching a created image fails on errors

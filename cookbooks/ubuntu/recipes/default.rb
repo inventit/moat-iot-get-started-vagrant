@@ -2,8 +2,8 @@ system "
   apt-get update
 "
 
-# JDK & Git & cURL
-%w{openjdk-6-jdk git build-essential libsqlite3-dev ruby1.9.3 ruby-bundler}.each do |p|
+# JDK & Git & cURL & Ruby & NodeJS
+%w{openjdk-6-jdk git build-essential libsqlite3-dev ruby1.9.3 ruby-bundler nodejs}.each do |p|
   package p do
     action :install
   end
