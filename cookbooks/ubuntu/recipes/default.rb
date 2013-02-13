@@ -15,4 +15,5 @@ execute "ruby1.9.3-default" do
     update-alternatives --set ruby /usr/bin/ruby1.9.1
     mkdir -p /var/lib/gems/1.9.1
   "
+  not_if "ruby -v | grep 1.9.3"
 end

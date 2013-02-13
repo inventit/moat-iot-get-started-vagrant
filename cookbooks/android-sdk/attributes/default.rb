@@ -13,3 +13,4 @@ set_unless[:android][:platform_dir] = "#{installation_dir}/#{dirname}/platforms"
 set_unless[:android][:platform_url] = "http://dl.google.com/android/repository/#{platform_tarball}"
 set_unless[:android][:platform_tarball_checksum] = "90b9157b8b45f966be97e11a22fba4591b96c2ee"
 set_unless[:android][:platform_tarball] = platform_tarball
+set_unless[:android][:platform_android_version] = "android-4.1.2"
