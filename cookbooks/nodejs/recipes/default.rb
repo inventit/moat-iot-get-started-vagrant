@@ -9,7 +9,7 @@ execute "nvm" do
   command "
     HOME=/home/#{node[:current][:user]} && curl https://raw.github.com/creationix/nvm/master/install.sh | sh
   "
-#  not_if "grep nvm /home/#{node[:current][:user]}/.profile"
+  not_if "grep nvm /home/#{node[:current][:user]}/.profile"
 end
 
 bash "nodejs" do
@@ -19,7 +19,7 @@ bash "nodejs" do
     nvm install #{node[:nodejs][:version]}
     nvm alias default #{node[:nodejs][:version]}
   "
-  not_if "/home/#{node[:current][:user]}/.profile && node -v | grep #{node[:nodejs][:version]}"
+  not_if "HOME=/home/#{node[:current][:user]} && . $HOME/.profile && node -v | grep #{node[:nodejs][:version]}"
 end
 
 bash "npm" do
@@ -30,7 +30,7 @@ bash "npm" do
     . /home/#{node[:current][:user]}/.profile
     HOME=/home/#{node[:current][:user]} && curl -k https://npmjs.org/install.sh | clean=yes sh
   "
-  not_if "which npm"
+  not_if {File.exists?("/home/#{node[:current][:user]}/.nvm/v#{node[:nodejs][:version]}/bin/npm")}
 end
 
 bash "npm install moat" do
@@ -39,7 +39,7 @@ bash "npm install moat" do
     . /home/#{node[:current][:user]}/.profile
     HOME=/home/#{node[:current][:user]} && npm install -g moat
   "
-  not_if "npm ls | grep moat"
+  not_if {File.exists?("/home/#{node[:current][:user]}/.npm/moat")}
 end
 
 bash "npm install nodeunit" do
@@ -48,7 +48,7 @@ bash "npm install nodeunit" do
     . /home/#{node[:current][:user]}/.profile
     HOME=/home/#{node[:current][:user]} && npm install -g nodeunit
   "
-  not_if "npm ls | grep nodeunit"
+  not_if {File.exists?("/home/#{node[:current][:user]}/.npm/nodeunit")}
 end
 
 bash "npm install sinon" do
@@ -57,5 +57,5 @@ bash "npm install sinon" do
     . /home/#{node[:current][:user]}/.profile
     HOME=/home/#{node[:current][:user]} && npm install -g sinon
   "
-  not_if "npm ls | grep sinon"
+  not_if {File.exists?("/home/#{node[:current][:user]}/.npm/sinon")}
 end
