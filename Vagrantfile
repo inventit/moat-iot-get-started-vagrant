@@ -7,6 +7,7 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "cookbooks"
     chef.add_recipe("ubuntu")
+    chef.add_recipe("nodejs")
     chef.add_recipe("maven")
     chef.add_recipe("android-sdk")
     chef.add_recipe("iidn-cli")
