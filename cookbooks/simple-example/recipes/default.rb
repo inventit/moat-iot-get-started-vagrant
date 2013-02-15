@@ -3,6 +3,7 @@ project_home = "/home/#{node[:current][:user]}/moat-iot-get-started"
 execute "create project dir" do
   user node[:current][:user]
   command "mkdir -p #{project_home}"
+  not_if {File.exists?("#{project_home}")}
 end
 
 execute "checkout moat-iot-get-started" do

@@ -2,8 +2,8 @@ system "
   apt-get update
 "
 
-# JDK & Git & cURL & Ruby & NodeJS
-%w{openjdk-6-jdk git build-essential libsqlite3-dev ruby1.9.3 ruby-bundler nodejs}.each do |p|
+# JDK & Git & cURL & Ruby
+%w{openjdk-6-jdk git build-essential libsqlite3-dev ruby1.9.3 ruby-bundler}.each do |p|
   package p do
     action :install
   end
@@ -17,3 +17,9 @@ execute "ruby1.9.3-default" do
   "
   not_if "ruby -v | grep 1.9.3"
 end
+
+execute "rake" do
+  command "gem install rake"
+  not_if "which rake"
+end
+
