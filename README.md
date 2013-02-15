@@ -37,6 +37,34 @@ This tool does NOT perform;
 
 Again, please follow the [instruction](http://dev.yourinventit.com/guides/get-started) for building.
 
+## Installed Modules
+
+These scripts install the following modules:
+
+* `apt-get` Installation
+ * [`openjdk-6-jdk`, Java Development Kit 6](http://openjdk.java.net/)
+ * [`git`, Git](http://git-scm.com/)
+ * [`build-essential`, Package building libraries](https://launchpad.net/ubuntu/precise/+package/build-essential)
+ * [`libsqlite3-dev`, Used by Rails](https://launchpad.net/ubuntu/precise/+package/libsqlite3-dev)
+ * [`ruby1.9.3`, Ruby 1.9.3](http://www.ruby-lang.org/en/)
+ * [`ruby-bundler`, RubyGems management tool](http://gembundler.com/)
+* Binary Installation
+ * [Apache Maven 3, Java Building Tool](http://maven.apache.org/download.cgi)
+ * [Android SDK r21.0.1 and Platform libraries(API Level 16)](http://developer.android.com/sdk/index.html)
+* Source Installation
+ * [Node.js v0.8.19](http://nodejs.org/)
+ * [`nvm`, Node Version Manager](https://github.com/creationix/nvm)
+ * [`npm`, Node Package Manager](https://npmjs.org/)
+* `npm` Installation
+ * [`moat`, MOAT js unit testing library](https://github.com/inventit/moatjs-stub)
+ * [`sinon`, Mock/Stub testing library](http://sinonjs.org/)
+ * [`nodeunit`, Unite testing library](https://github.com/caolan/nodeunit)
+
+and
+
+* [`iidn` Command Line Interface Tool](https://github.com/inventit/iidn-cli)
+* [Getting Started Example Project](https://github.com/inventit/moat-iot-get-started)
+
 ## Misc
 
 1. You can choose 64bit based Ubuntu 12.04 but it takes longer time to `vagrant up` because of more libraries are required than 32bit Ubuntu in Android SDK installation
@@ -56,6 +84,10 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Change History
+
+1.0.5 : February 15, 2013
+
+* Adds a new recipe to install node-v0.8.19
 
 1.0.4 : February 13, 2013
 
