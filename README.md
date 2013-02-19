@@ -85,6 +85,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Change History
 
+1.0.6 : February 19, 2013
+
+* Fixes an issue where creating a project directory is skipped because of duplicate recipe resource name
+
 1.0.5 : February 15, 2013
 
 * Adds a new recipe to install node-v0.8.19

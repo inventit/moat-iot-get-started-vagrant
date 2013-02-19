@@ -1,6 +1,6 @@
 project_home = "/home/#{node[:current][:user]}/iidn-cli"
 
-execute "create project dir" do
+execute "create iidn-cli dir" do
   user node[:current][:user]
   command "mkdir -p #{project_home}"
   not_if {File.exists?("#{project_home}")}
@@ -13,7 +13,7 @@ execute "checkout iidn-cli" do
   not_if {File.exists?("#{project_home}/iidn")}
 end
 
-execute "add-path-bashrc" do
+execute "add iidn path to bashrc" do
   user node[:current][:user]
   command "echo \"export PATH=#{project_home}:\\$PATH\" >> /home/#{node[:current][:user]}/.bashrc"
   not_if "grep iidn /home/#{node[:current][:user]}/.bashrc"
