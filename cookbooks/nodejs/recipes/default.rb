@@ -15,7 +15,7 @@ end
 bash "nodejs" do
   user node[:current][:user]
   code "
-    . /home/#{node[:current][:user]}/.profile
+    HOME=/home/#{node[:current][:user]} . /home/#{node[:current][:user]}/.profile
     nvm install #{node[:nodejs][:version]}
     nvm alias default #{node[:nodejs][:version]}
   "
@@ -27,7 +27,7 @@ bash "npm" do
   cwd "/tmp"
   # clean=yes for avoiding /dev/tty error
   code "
-    . /home/#{node[:current][:user]}/.profile
+    HOME=/home/#{node[:current][:user]} . /home/#{node[:current][:user]}/.profile
     HOME=/home/#{node[:current][:user]} && curl -k https://npmjs.org/install.sh | clean=yes sh
   "
   not_if {File.exists?("/home/#{node[:current][:user]}/.nvm/v#{node[:nodejs][:version]}/bin/npm")}
@@ -36,7 +36,7 @@ end
 bash "npm install moat" do
   user node[:current][:user]
   code "
-    . /home/#{node[:current][:user]}/.profile
+    HOME=/home/#{node[:current][:user]} . /home/#{node[:current][:user]}/.profile
     HOME=/home/#{node[:current][:user]} && npm install -g moat
   "
   not_if {File.exists?("/home/#{node[:current][:user]}/.npm/moat")}
@@ -45,7 +45,7 @@ end
 bash "npm install nodeunit" do
   user node[:current][:user]
   code "
-    . /home/#{node[:current][:user]}/.profile
+    HOME=/home/#{node[:current][:user]} . /home/#{node[:current][:user]}/.profile
     HOME=/home/#{node[:current][:user]} && npm install -g nodeunit
   "
   not_if {File.exists?("/home/#{node[:current][:user]}/.npm/nodeunit")}
@@ -54,7 +54,7 @@ end
 bash "npm install sinon" do
   user node[:current][:user]
   code "
-    . /home/#{node[:current][:user]}/.profile
+    HOME=/home/#{node[:current][:user]} . /home/#{node[:current][:user]}/.profile
     HOME=/home/#{node[:current][:user]} && npm install -g sinon
   "
   not_if {File.exists?("/home/#{node[:current][:user]}/.npm/sinon")}
