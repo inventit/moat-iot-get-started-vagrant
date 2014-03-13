@@ -21,14 +21,18 @@ end
   end
 end
 
-execute "install-rake" do
-  command "gem install rake"
+execute "install-rake-and-rails" do
+  command "gem install rake rails"
   action :nothing
 end
 
 package 'ruby2.1' do
   action :install
-  notifies :run, resources(:execute => "install-rake"), :immediately
+end
+
+package 'ruby2.1-dev' do
+  action :install
+  notifies :run, resources(:execute => "install-rake-and-rails"), :immediately
 end
 
 package 'ruby-bundler' do
