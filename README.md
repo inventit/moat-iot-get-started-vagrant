@@ -90,6 +90,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 1.0.7 : March 13, 2014
 
 * Supports Vagrant 1.5.0. Older versions of Vagrant are no longer supported
+* Adds a new resource to install rails
 * Ruby is upgraded to 2.1
 * Node.JS is upgraded to 0.10.26
 
