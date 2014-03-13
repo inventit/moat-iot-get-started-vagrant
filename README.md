@@ -46,13 +46,15 @@ These scripts install the following modules:
  * [`git`, Git](http://git-scm.com/)
  * [`build-essential`, Package building libraries](https://launchpad.net/ubuntu/precise/+package/build-essential)
  * [`libsqlite3-dev`, Used by Rails](https://launchpad.net/ubuntu/precise/+package/libsqlite3-dev)
- * [`ruby1.9.3`, Ruby 1.9.3](http://www.ruby-lang.org/en/)
+ * [`ruby2.1`, Ruby 2.1.0](http://www.ruby-lang.org/en/)
  * [`ruby-bundler`, RubyGems management tool](http://gembundler.com/)
+ * [`rake`, Ruby Make](http://rake.rubyforge.org/)
+ * [`rails`, Ruby on Rails](http://rubyonrails.org/)
 * Binary Installation
  * [Apache Maven 3, Java Building Tool](http://maven.apache.org/download.cgi)
  * [Android SDK r21.0.1 and Platform libraries(API Level 16)](http://developer.android.com/sdk/index.html)
 * Source Installation
- * [Node.js v0.8.19](http://nodejs.org/)
+ * [Node.js v0.10.26](http://nodejs.org/)
  * [`nvm`, Node Version Manager](https://github.com/creationix/nvm)
  * [`npm`, Node Package Manager](https://npmjs.org/)
 * `npm` Installation
@@ -75,7 +77,7 @@ All program source codes are available under the MIT style License.
 
 The use of IIDN service requires [our term of service](http://dev.yourinventit.com/legal/term-of-service).
 
-Copyright (c) 2013 Inventit Inc.
+Copyright (c) 2014 Inventit Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -84,6 +86,12 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Change History
+
+1.0.7 : March 13, 2014
+
+* Supports Vagrant 1.5.0. Older versions of Vagrant are no longer supported
+* Ruby is upgraded to 2.1
+* Node.JS is upgraded to 0.10.26
 
 1.0.6 : February 19, 2013
 
