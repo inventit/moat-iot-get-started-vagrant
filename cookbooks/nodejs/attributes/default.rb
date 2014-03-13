@@ -1,2 +1,2 @@
 
-set_unless[:nodejs][:version] = "0.8.19"
+set_unless[:nodejs][:version] = "0.10.26"
