@@ -1,25 +1,40 @@
-system "
-  apt-get update
-"
+execute "apt-get-update" do
+  command "apt-get update"
+  ignore_failure true
+end
+
+package 'python-software-properties' do
+  action :install
+end
+
+execute "add-brightbox" do
+  command "apt-add-repository -y ppa:brightbox/ruby-ng"
+  ignore_failure true
+  notifies :run, resources(:execute => "apt-get-update"), :immediately
+  action :run
+end
 
 # JDK & Git & cURL & Ruby
-%w{openjdk-6-jdk git build-essential libsqlite3-dev ruby1.9.3 ruby-bundler}.each do |p|
+%w{openjdk-6-jdk git build-essential libsqlite3-dev}.each do |p|
   package p do
     action :install
   end
 end
 
-execute "ruby1.9.3-default" do
-  command "
-    update-alternatives --install \"/usr/bin/ruby\" \"ruby\" \"/usr/bin/ruby1.9.1\" 400
-    update-alternatives --set ruby /usr/bin/ruby1.9.1
-    mkdir -p /var/lib/gems/1.9.1
-  "
-  not_if "ruby -v | grep 1.9.3"
+execute "install-rake-and-rails" do
+  command "gem install rake rails"
+  action :nothing
 end
 
-execute "rake" do
-  command "gem install rake"
-  not_if "which rake"
+package 'ruby2.1' do
+  action :install
 end
 
+package 'ruby2.1-dev' do
+  action :install
+  notifies :run, resources(:execute => "install-rake-and-rails"), :immediately
+end
+
+package 'ruby-bundler' do
+  action :install
+end
