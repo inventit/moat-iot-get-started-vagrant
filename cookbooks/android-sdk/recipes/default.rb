@@ -42,6 +42,13 @@ execute "chmod" do
   action :run
 end
 
+# Required as com.android.sdklib.SdkManager creates `build-tools` folder.
+execute "chown" do
+  cwd installation_dir
+  command "chown -R #{node[:current][:user]} ."
+  action :run
+end
+
 execute "add-android_home-bashrc" do
   user node[:current][:user]
   path = "#{installation_dir}/#{node[:android][:dirname]}"
