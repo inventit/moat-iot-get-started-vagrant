@@ -47,11 +47,12 @@ These scripts install the following modules:
  * [`build-essential`, Package building libraries](https://launchpad.net/ubuntu/precise/+package/build-essential)
  * [`libsqlite3-dev`, Used by Rails](https://launchpad.net/ubuntu/precise/+package/libsqlite3-dev)
  * [`ruby2.1`, Ruby 2.1.0](http://www.ruby-lang.org/en/)
+ * [`ruby2.1-dev`, Header files for Ruby 2.1.0](http://www.ubuntuupdates.org/package/brightbox_ruby_ng_experimental/precise/main/base/ruby2.1-dev)
  * [`ruby-bundler`, RubyGems management tool](http://gembundler.com/)
  * [`rake`, Ruby Make](http://rake.rubyforge.org/)
  * [`rails`, Ruby on Rails](http://rubyonrails.org/)
 * Binary Installation
- * [Apache Maven 3, Java Building Tool](http://maven.apache.org/download.cgi)
+ * [Apache Maven 3.0.5, Java Building Tool](http://maven.apache.org/download.cgi)
  * [Android SDK r21.0.1 and Platform libraries(API Level 16)](http://developer.android.com/sdk/index.html)
 * Source Installation
  * [Node.js v0.10.26](http://nodejs.org/)
@@ -86,6 +87,11 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Change History
+
+1.0.8 : March 14, 2014
+
+* Fixes an issue where android platform sdk is not accessible from a maven android plugin
+* Fixes an issue Chef-solo process is killed unexpectedly because of out of memory error
 
 1.0.7 : March 13, 2014
 

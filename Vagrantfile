@@ -5,6 +5,9 @@ Vagrant.configure("2") do |config|
   suffix = (ARCH == 32 ? '-i386' : '')
   config.vm.box = "opscode_ubuntu-12.04#{suffix}_chef-11.4.4"
   config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04#{suffix}_chef-11.4.4.box"
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", 1024]
+  end
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "cookbooks"
     chef.add_recipe("ubuntu")
