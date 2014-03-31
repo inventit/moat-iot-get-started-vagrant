@@ -30,6 +30,13 @@ After the first trial, it would take 5 or more.
 
 In order to set up the example applications, let's go to the [tutorial](http://dev.yourinventit.com/guides/get-started).
 
+### Proxy Users
+
+If your machine uses HTTP proxy, edit `Vagrantfile` and set your proxy URL to `PROXY_URL` constant at the line 5, then run `vagrant up`.
+
+    4: # Set Proxy URL if your computer uses HTTP Proxy.
+    5: PROXY_URL = "http://localhost:8080/"
+
 ## Heads Up!
 
 This tool does NOT perform;
