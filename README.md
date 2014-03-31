@@ -88,6 +88,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Change History
 
+1.0.9 : March 31, 2014
+* HTTP Proxy support
+
 1.0.8 : March 14, 2014
 
 * Fixes an issue where android platform sdk is not accessible from a maven android plugin
