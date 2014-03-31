@@ -5,6 +5,7 @@ ARCH = 32
 PROXY_URL = nil #"http://localhost:8080/"
 
 Vagrant.configure("2") do |config|
+  chef_json = {}
   suffix = (ARCH == 32 ? '-i386' : '')
   config.vm.box = "opscode_ubuntu-12.04#{suffix}_chef-11.4.4"
   config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04#{suffix}_chef-11.4.4.box"
@@ -12,6 +13,22 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--memory", 1024]
   end
   if PROXY_URL
+    require 'uri'
+    proxy = URI(PROXY_URL)
+    chef_json['maven'] = {
+      'proxy' => {
+        'http' => {
+          'host' => proxy.host,
+          'port' => proxy.port,
+          'nonProxyHosts' => 'localhost,127.0.0.1'
+        },
+        'https' => {
+          'host' => proxy.host,
+          'port' => proxy.port,
+          'nonProxyHosts' => 'localhost,127.0.0.1'
+        }
+      }
+    }
     config.vm.provision :shell, :inline => "
       echo 'Acquire::http::proxy \"#{PROXY_URL}\";' >> /etc/apt/apt.conf
       echo 'Acquire::https::proxy \"#{PROXY_URL}\";' >> /etc/apt/apt.conf
@@ -31,6 +48,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe("android-sdk")
     chef.add_recipe("iidn-cli")
     chef.add_recipe("simple-example")
+    chef.json = chef_json
   end
   # Forward guest port 3000 to host port 3000
   config.vm.network :forwarded_port, guest: 3000, host: 3000

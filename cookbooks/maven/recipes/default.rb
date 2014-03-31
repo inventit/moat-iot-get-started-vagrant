@@ -41,3 +41,41 @@ execute "add-maven-bashrc" do
   command "echo \"export PATH=#{path}:\\$PATH\" >> /home/#{node[:current][:user]}/.bashrc"
   not_if "grep maven /home/#{node[:current][:user]}/.bashrc"
 end
+
+# create directory
+m2_user_dir = "/home/#{node[:current][:user]}/.m2"
+execute "mkdir #{m2_user_dir}" do
+  user node[:current][:user]
+  group node[:current][:user]
+  command <<-CMD
+    mkdir -p #{m2_user_dir}
+  CMD
+  not_if {File.exists?("#{m2_user_dir}")}
+end
+
+template "#{m2_user_dir}/settings.xml" do
+  user node[:current][:user]
+  group node[:current][:user]
+  source "settings.xml.erb"
+  mappings = {}
+  if node['maven']['proxy']
+    proxy = node['maven']['proxy']
+    http = proxy['http']
+    https = proxy['https']
+    if http
+      mappings.merge!({
+        :http_proxy_host => http['host'],
+        :http_proxy_port => http['port'],
+        :http_proxy_nonProxyHosts => http['nonProxyHosts'],
+        })
+    end
+    if https
+      mappings.merge!({
+        :https_proxy_host => https['host'],
+        :https_proxy_port => https['port'],
+        :https_proxy_nonProxyHosts => http['nonProxyHosts'],
+        })
+    end
+  end
+  variables(mappings)
+end
