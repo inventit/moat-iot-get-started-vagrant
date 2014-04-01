@@ -2,7 +2,7 @@
 ARCH = 32
 
 # Set Proxy URL if your computer uses HTTP Proxy.
-PROXY_URL = nil #"http://localhost:8080/"
+PROXY_URL = nil #"http://192.168.1.101:3128/"
 
 Vagrant.configure("2") do |config|
   chef_json = {}
@@ -38,6 +38,8 @@ Vagrant.configure("2") do |config|
       echo 'HTTP_PROXY=\"#{PROXY_URL}\"' >> /etc/environment
       echo 'HTTPS_PROXY=\"#{PROXY_URL}\"' >> /etc/environment
       echo 'NO_PROXY=\"localhost,127.0.0.1\"' >> /etc/environment
+      echo '[http]' >> /etc/gitconfig
+      echo '	proxy = #{PROXY_URL}' >> /etc/gitconfig
     "
   end
   config.vm.provision :chef_solo do |chef|
