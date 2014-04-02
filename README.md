@@ -34,7 +34,7 @@ In order to set up the example applications, let's go to the [tutorial](http://d
 
 If your machine uses HTTP web proxy, do the following steps.
 
-Install the proxy plugin.
+Install the proxy plugin (Leave `HTTP_PROXY` `nil` unless the plugin is installed)
 
     vagrant plugin install vagrant-proxyconf
 
@@ -127,7 +127,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Change History
 
-1.0.9 : March 31, 2014
+1.0.9 : April 3, 2014
 
 * HTTP Proxy support
 
