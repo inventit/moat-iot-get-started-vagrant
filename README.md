@@ -32,10 +32,42 @@ In order to set up the example applications, let's go to the [tutorial](http://d
 
 ### Proxy Users
 
-If your machine uses HTTP proxy, edit `Vagrantfile` and set your proxy URL to `PROXY_URL` constant at the line 5, then run `vagrant up`.
+If your machine uses HTTP web proxy, do the following steps.
+
+Install the proxy plugin.
+
+    vagrant plugin install vagrant-proxyconf
+
+Edit `Vagrantfile` and set your proxy URL to `HTTP_PROXY` constant at the line 5.
+You can modify `HTTPS_PROXY` for SSL connection and `NO_PROXY` if necessary.
 
     4: # Set Proxy URL if your computer uses HTTP Proxy.
-    5: PROXY_URL = "http://localhost:8080/"
+    5: HTTP_PROXY = "http://localhost:8080/"
+    6: HTTPS_PROXY = HTTP_PROXY
+    7: NO_PROXY = "localhost,127.0.0.1"
+
+Finally run `vagrant up`.
+
+This Vagrantfile itself configures proxy settings for `maven2` and `git` where the plugin doesn't care.
+
+#### Known Issue
+
+After completing `vagrant up` command, the console complains as follows:
+
+	==> default: Configuring proxy for npm...
+	The following SSH command responded with a non-zero exit status.
+	Vagrant assumes that this means the command failed!
+
+	npm config set proxy http://proxyhost:proxyport/
+
+	Stdout from the command:
+
+	Stderr from the command:
+
+	stdin: is not a tty
+	bash: line 2: npm: command not found
+
+You can ignore the message since `npm` is properly installed despite the error.
 
 ## Heads Up!
 

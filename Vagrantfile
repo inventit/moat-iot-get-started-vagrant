@@ -2,7 +2,9 @@
 ARCH = 32
 
 # Set Proxy URL if your computer uses HTTP Proxy.
-PROXY_URL = nil #"http://192.168.1.101:3128/"
+HTTP_PROXY = nil #"http://192.168.1.102:3128/"
+HTTPS_PROXY = HTTP_PROXY
+NO_PROXY = "localhost,127.0.0.1"
 
 Vagrant.configure("2") do |config|
   chef_json = {}
@@ -12,34 +14,42 @@ Vagrant.configure("2") do |config|
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", 1024]
   end
-  if PROXY_URL
+  if HTTP_PROXY
+    raise "install `vagrant-proxyconf` plugin prior to starting the image." unless Vagrant.has_plugin?("vagrant-proxyconf")
+    config.proxy.http = HTTP_PROXY
+    config.proxy.https = HTTPS_PROXY
+    config.proxy.no_proxy = NO_PROXY
+
     require 'uri'
-    proxy = URI(PROXY_URL)
+    http_proxy = URI(HTTP_PROXY)
+    https_proxy = URI(HTTPS_PROXY)
     chef_json['maven'] = {
       'proxy' => {
         'http' => {
-          'host' => proxy.host,
-          'port' => proxy.port,
-          'nonProxyHosts' => 'localhost,127.0.0.1'
+          'host' => http_proxy.host,
+          'port' => http_proxy.port,
+          'nonProxyHosts' => NO_PROXY
         },
         'https' => {
-          'host' => proxy.host,
-          'port' => proxy.port,
-          'nonProxyHosts' => 'localhost,127.0.0.1'
+          'host' => https_proxy.host,
+          'port' => https_proxy.port,
+          'nonProxyHosts' => NO_PROXY
+        }
+      }
+    }
+    chef_json['nodejs'] = {
+      'npm' => {
+        'proxy' => {
+          'http' => HTTP_PROXY,
+          'https' => HTTPS_PROXY
         }
       }
     }
     config.vm.provision :shell, :inline => "
-      echo 'Acquire::http::proxy \"#{PROXY_URL}\";' >> /etc/apt/apt.conf
-      echo 'Acquire::https::proxy \"#{PROXY_URL}\";' >> /etc/apt/apt.conf
-      echo 'http_proxy=\"#{PROXY_URL}\"' >> /etc/environment
-      echo 'https_proxy=\"#{PROXY_URL}\"' >> /etc/environment
-      echo 'no_proxy=\"localhost,127.0.0.1\"' >> /etc/environment
-      echo 'HTTP_PROXY=\"#{PROXY_URL}\"' >> /etc/environment
-      echo 'HTTPS_PROXY=\"#{PROXY_URL}\"' >> /etc/environment
-      echo 'NO_PROXY=\"localhost,127.0.0.1\"' >> /etc/environment
       echo '[http]' >> /etc/gitconfig
-      echo '	proxy = #{PROXY_URL}' >> /etc/gitconfig
+      echo '	proxy = #{HTTP_PROXY}' >> /etc/gitconfig
+      echo '[https]' >> /etc/gitconfig
+      echo '	proxy = #{HTTPS_PROXY}' >> /etc/gitconfig
     "
   end
   config.vm.provision :chef_solo do |chef|
