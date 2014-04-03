@@ -6,6 +6,8 @@ HTTP_PROXY = nil #"http://192.168.1.102:3128/"
 HTTPS_PROXY = HTTP_PROXY
 NO_PROXY = "localhost,127.0.0.1"
 
+NPM_WITHOUT_SSL = false # true if you have an issue where npm package installation is timeout.
+
 Vagrant.configure("2") do |config|
   chef_json = {}
   suffix = (ARCH == 32 ? '-i386' : '')
@@ -42,7 +44,8 @@ Vagrant.configure("2") do |config|
         'proxy' => {
           'http' => HTTP_PROXY,
           'https' => HTTPS_PROXY
-        }
+        },
+        'without_ssl' => NPM_WITHOUT_SSL
       }
     }
     config.vm.provision :shell, :inline => "

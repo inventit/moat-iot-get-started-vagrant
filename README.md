@@ -50,6 +50,10 @@ Finally run `vagrant up`.
 
 This Vagrantfile itself configures proxy settings for `maven2` and `git` where the plugin doesn't care.
 
+#### Disabling SSL for npm
+
+In some cases, npm package installation may cause timeout. You can choose HTTP rather than HTTPS for downloading packages via `npm`, which should be faster (insecure though).
+
 #### Known Issue
 
 After completing `vagrant up` command, the console complains as follows:
@@ -130,6 +134,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 1.0.9 : April 3, 2014
 
 * HTTP Proxy support
+* Adds a new option to enable/disable SSL for npm (SSL enabled by default)
 
 1.0.8 : March 14, 2014
 
