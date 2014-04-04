@@ -2,7 +2,7 @@
 ARCH = 32
 
 # Set Proxy URL if your computer uses HTTP Proxy.
-HTTP_PROXY = nil #"http://192.168.1.102:3128/"
+HTTP_PROXY = ENV['VAGRANT_HTTP_PROXY']
 HTTPS_PROXY = HTTP_PROXY
 NO_PROXY = "localhost,127.0.0.1"
 
@@ -17,7 +17,13 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--memory", 1024]
   end
   if HTTP_PROXY
-    raise "install `vagrant-proxyconf` plugin prior to starting the image." unless Vagrant.has_plugin?("vagrant-proxyconf")
+    unless Vagrant.has_plugin?("vagrant-proxyconf")
+      puts "[ERROR]"
+      puts "[ERROR] install `vagrant-proxyconf` plugin prior to starting the image."
+      puts "[ERROR]"
+      raise "Error. See the [ERROR] message."
+    end
+    puts "With configuring HTTP web proxy..."
     config.proxy.http = HTTP_PROXY
     config.proxy.https = HTTPS_PROXY
     config.proxy.no_proxy = NO_PROXY
@@ -46,6 +52,12 @@ Vagrant.configure("2") do |config|
           'https' => HTTPS_PROXY
         },
         'without_ssl' => NPM_WITHOUT_SSL
+      }
+    }
+    chef_json['android'] = {
+      'proxy' => {
+        'host' => http_proxy.host,
+        'port' => http_proxy.port,
       }
     }
     config.vm.provision :shell, :inline => "

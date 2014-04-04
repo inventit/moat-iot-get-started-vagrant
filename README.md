@@ -15,7 +15,7 @@ After installing Vagrant and VirtualBox, then checkout this project:
 
 ### Git
 
-    $ git clone git://github.com/inventit/moat-iot-get-started-vagrant.git
+    $ git clone https://github.com/inventit/moat-iot-get-started-vagrant.git
 
 ### Wget/Browser
 
@@ -36,19 +36,17 @@ If your machine uses HTTP web proxy, do the following steps.
 
 Install the proxy plugin (Leave `HTTP_PROXY` `nil` unless the plugin is installed)
 
-    vagrant plugin install vagrant-proxyconf
+    $ vagrant plugin install vagrant-proxyconf
 
-Edit `Vagrantfile` and set your proxy URL to `HTTP_PROXY` constant at the line 5.
-You can modify `HTTPS_PROXY` for SSL connection and `NO_PROXY` if necessary.
+Then launch the vagrant;
 
-    4: # Set Proxy URL if your computer uses HTTP Proxy.
-    5: HTTP_PROXY = "http://localhost:8080/"
-    6: HTTPS_PROXY = HTTP_PROXY
-    7: NO_PROXY = "localhost,127.0.0.1"
+    $ VAGRANT_HTTP_PROXY=http://host:port/ vagrant up
 
-Finally run `vagrant up`.
+Once `vagrant up` is completed, `vagrant ssh` and run the following command;
 
-This Vagrantfile itself configures proxy settings for `maven2` and `git` where the plugin doesn't care.
+    ~/download-platofrm-tools.sh
+
+in order to install Android's platform-tools. This should be performed manually because the command asks you proxy settings interactively.
 
 #### Disabling SSL for npm
 
@@ -131,9 +129,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Change History
 
-1.0.9 : April 3, 2014
+1.0.9 : April 4, 2014
 
-* HTTP Proxy support
+* HTTP web Proxy support
 * Adds a new option to enable/disable SSL for npm (SSL enabled by default)
 
 1.0.8 : March 14, 2014
