@@ -66,7 +66,24 @@ execute "android update" do
   cwd "#{installation_dir}/#{node[:android][:dirname]}"
   command "#{installation_dir}/#{node[:android][:dirname]}/tools/android update sdk -u -t platform-tool"
   action :run
-  not_if {File.exists?("#{installation_dir}/#{node[:android][:dirname]}/platform-tools")}
+  not_if {node['android']['proxy'] || File.exists?("#{installation_dir}/#{node[:android][:dirname]}/platform-tools")}
+end
+
+template "/home/#{node[:current][:user]}/download-platform-tools.sh" do
+  user node[:current][:user]
+  group node[:current][:user]
+  mode 0777
+  source "download-platform-tools.sh.erb"
+  if node['android']['proxy']
+    mappings = {}
+    proxy = node['android']['proxy']
+    mappings.merge!({
+      :android_tools_dir => "#{installation_dir}/#{node[:android][:dirname]}/tools",
+      :http_proxy_host => proxy['host'],
+      :http_proxy_port => proxy['port']
+    })
+    variables(mappings)
+  end
 end
 
 execute "wget platform" do

@@ -15,7 +15,7 @@ After installing Vagrant and VirtualBox, then checkout this project:
 
 ### Git
 
-    $ git clone git://github.com/inventit/moat-iot-get-started-vagrant.git
+    $ git clone https://github.com/inventit/moat-iot-get-started-vagrant.git
 
 ### Wget/Browser
 
@@ -29,6 +29,47 @@ NOTE that this would take at least 20 minutes or more depending on the network s
 After the first trial, it would take 5 or more.
 
 In order to set up the example applications, let's go to the [tutorial](http://dev.yourinventit.com/guides/get-started).
+
+### Proxy Users
+
+If your machine uses HTTP web proxy, do the following steps.
+
+Install the proxy plugin.
+
+    $ vagrant plugin install vagrant-proxyconf
+
+Then launch the vagrant.
+
+    $ VAGRANT_HTTP_PROXY=http://host:port/ vagrant up
+
+Once `vagrant up` is completed, `vagrant ssh` and run the following command;
+
+    ~/download-platform-tools.sh
+
+in order to install Android's platform-tools. This should be performed manually because the command asks you proxy settings interactively.
+
+#### Disabling SSL for npm
+
+In some cases, npm package installation may cause timeout. You can choose HTTP rather than HTTPS for downloading packages via `npm`, which should be faster (insecure though).
+
+#### Known Issue
+
+After completing `vagrant up` command, the console complains as follows:
+
+	==> default: Configuring proxy for npm...
+	The following SSH command responded with a non-zero exit status.
+	Vagrant assumes that this means the command failed!
+
+	npm config set proxy http://proxyhost:proxyport/
+
+	Stdout from the command:
+
+	Stderr from the command:
+
+	stdin: is not a tty
+	bash: line 2: npm: command not found
+
+You can ignore the message since `npm` is properly installed despite the error.
 
 ## Heads Up!
 
@@ -87,6 +128,11 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Change History
+
+1.0.9 : April 5, 2014
+
+* HTTP web Proxy support
+* Adds a new option to enable/disable SSL for npm (SSL enabled by default)
 
 1.0.8 : March 14, 2014
 

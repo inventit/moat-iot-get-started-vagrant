@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# This script is used for web proxy users to download Android's platform-tools manually.
+# [Usage]
+# $ ./download-platform-tools.sh
+#
+# You will be asked several questions and answer them. And the platform-tools will be installed.
+
+<%= @android_tools_dir %>/android update sdk -u -t platform-tool --proxy-host <%= @http_proxy_host %> --proxy-port <%= @http_proxy_port %>

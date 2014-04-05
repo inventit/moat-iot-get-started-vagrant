@@ -1,0 +1,36 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <proxies>
+<%
+if @http_proxy_host
+%>
+    <proxy>
+      <id>http_proxy</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host><%= @http_proxy_host %></host>
+      <port><%= @http_proxy_port %></port>
+      <nonProxyHosts><%= @http_proxy_nonProxyHosts %></nonProxyHosts>
+    </proxy>
+<%
+end	
+%>
+<%
+if @https_proxy_host
+%>
+    <proxy>
+      <id>https_proxy</id>
+      <active>true</active>
+      <protocol>https</protocol>
+      <host><%= @https_proxy_host %></host>
+      <port><%= @https_proxy_port %></port>
+      <nonProxyHosts><%= @https_proxy_nonProxyHosts %></nonProxyHosts>
+    </proxy>
+<%
+end	
+%>
+  </proxies>
+</settings>
