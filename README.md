@@ -34,17 +34,17 @@ In order to set up the example applications, let's go to the [tutorial](http://d
 
 If your machine uses HTTP web proxy, do the following steps.
 
-Install the proxy plugin (Leave `HTTP_PROXY` `nil` unless the plugin is installed)
+Install the proxy plugin.
 
     $ vagrant plugin install vagrant-proxyconf
 
-Then launch the vagrant;
+Then launch the vagrant.
 
     $ VAGRANT_HTTP_PROXY=http://host:port/ vagrant up
 
 Once `vagrant up` is completed, `vagrant ssh` and run the following command;
 
-    ~/download-platofrm-tools.sh
+    ~/download-platform-tools.sh
 
 in order to install Android's platform-tools. This should be performed manually because the command asks you proxy settings interactively.
 
@@ -129,7 +129,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Change History
 
-1.0.9 : April 4, 2014
+1.0.9 : April 5, 2014
 
 * HTTP web Proxy support
 * Adds a new option to enable/disable SSL for npm (SSL enabled by default)

@@ -72,12 +72,13 @@ end
 template "/home/#{node[:current][:user]}/download-platform-tools.sh" do
   user node[:current][:user]
   group node[:current][:user]
-  mode 755
+  mode 0777
   source "download-platform-tools.sh.erb"
   if node['android']['proxy']
     mappings = {}
     proxy = node['android']['proxy']
     mappings.merge!({
+      :android_tools_dir => "#{installation_dir}/#{node[:android][:dirname]}/tools",
       :http_proxy_host => proxy['host'],
       :http_proxy_port => proxy['port']
     })
