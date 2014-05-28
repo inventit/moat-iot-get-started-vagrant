@@ -7,7 +7,7 @@ end
 execute "nvm" do
   user node[:current][:user]
   command "
-    HOME=/home/#{node[:current][:user]} && curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+    HOME=/home/#{node[:current][:user]} && curl -L https://raw.github.com/creationix/nvm/master/install.sh | sh
   "
   not_if "grep nvm /home/#{node[:current][:user]}/.profile"
 end
@@ -28,7 +28,7 @@ bash "npm" do
   # clean=yes for avoiding /dev/tty error
   code "
     HOME=/home/#{node[:current][:user]} . /home/#{node[:current][:user]}/.profile
-    HOME=/home/#{node[:current][:user]} curl -k https://npmjs.org/install.sh | clean=yes sh
+    HOME=/home/#{node[:current][:user]} curl -L -k https://npmjs.org/install.sh | clean=yes sh
   "
   not_if {File.exists?("/home/#{node[:current][:user]}/.nvm/v#{node[:nodejs][:version]}/bin/npm")}
 end
