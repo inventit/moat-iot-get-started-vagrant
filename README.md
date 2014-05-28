@@ -129,6 +129,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Change History
 
+1.0.10 : May 28, 2014
+
+* Fixes an issue where nvm failed to be installed because of a lack of HTTP redirect support
+
 1.0.9 : April 5, 2014
 
 * HTTP web Proxy support
