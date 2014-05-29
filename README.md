@@ -129,6 +129,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Change History
 
+1.0.11 : May 29, 2014
+
+* Fixes an issue where iidn-cli project is not properly cloned
+
 1.0.10 : May 28, 2014
 
 * Fixes an issue where nvm failed to be installed because of a lack of HTTP redirect support
