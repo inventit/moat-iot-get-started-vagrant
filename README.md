@@ -42,6 +42,8 @@ Then launch the vagrant.
 
     $ VAGRANT_HTTP_PROXY=http://host:port/ vagrant up
 
+### Download Android Build Tools
+
 Once `vagrant up` is completed, `vagrant ssh` and run the following command;
 
     ~/download-platform-tools.sh

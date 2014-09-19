@@ -6,4 +6,5 @@
 #
 # You will be asked several questions and answer them. And the platform-tools will be installed.
 
-<%= @android_tools_dir %>/android update sdk -u -t platform-tool --proxy-host <%= @http_proxy_host %> --proxy-port <%= @http_proxy_port %>
+<%= @android_tools_dir %>/android update sdk --no-ui -a <%= @proxy_desc %>
+<%= @android_tools_dir %>/android update sdk --no-ui --filter build-tools-18.0.1 <%= @proxy_desc %>

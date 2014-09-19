@@ -74,16 +74,16 @@ template "/home/#{node[:current][:user]}/download-platform-tools.sh" do
   group node[:current][:user]
   mode 0777
   source "download-platform-tools.sh.erb"
+  mappings = {
+    :android_tools_dir => "#{installation_dir}/#{node[:android][:dirname]}/tools"
+  }
   if node['android']['proxy']
-    mappings = {}
     proxy = node['android']['proxy']
     mappings.merge!({
-      :android_tools_dir => "#{installation_dir}/#{node[:android][:dirname]}/tools",
-      :http_proxy_host => proxy['host'],
-      :http_proxy_port => proxy['port']
+      :proxy_desc => " --proxy-host #{proxy['host']} --proxy-port #{proxy['port']} "
     })
-    variables(mappings)
   end
+  variables(mappings)
 end
 
 execute "wget platform" do
