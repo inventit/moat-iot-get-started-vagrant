@@ -7,7 +7,7 @@ end
 execute "nvm" do
   user node[:current][:user]
   command "
-    HOME=/home/#{node[:current][:user]} && curl -L https://raw.github.com/creationix/nvm/master/install.sh | sh
+    HOME=/home/#{node[:current][:user]} && curl -L https://raw.github.com/creationix/nvm/v0.8.0/install.sh | sh
   "
   not_if "grep nvm /home/#{node[:current][:user]}/.profile"
 end
