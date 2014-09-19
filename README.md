@@ -42,6 +42,8 @@ Then launch the vagrant.
 
     $ VAGRANT_HTTP_PROXY=http://host:port/ vagrant up
 
+### Download Android Build Tools
+
 Once `vagrant up` is completed, `vagrant ssh` and run the following command;
 
     ~/download-platform-tools.sh
@@ -128,6 +130,10 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Change History
+
+1.0.13 : September 19, 2014
+
+* Fixes an issue where android build-tools is always missing after finishing Vagrant up/provision
 
 1.0.12 : September 19, 2014
 
