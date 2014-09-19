@@ -129,6 +129,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Change History
 
+1.0.12 : September 19, 2014
+
+* Fixes an issue where the latest nvm doesn't work with the nodejs recipe
+
 1.0.11 : May 29, 2014
 
 * Fixes an issue where iidn-cli project is not properly cloned
