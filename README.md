@@ -131,6 +131,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Change History
 
+1.0.13 : September 19, 2014
+
+* Fixes an issue where android build-tools is always missing after finishing Vagrant up/provision
+
 1.0.12 : September 19, 2014
 
 * Fixes an issue where the latest nvm doesn't work with the nodejs recipe
